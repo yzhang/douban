@@ -1,0 +1,8 @@
+development:
+  key:    "your api key from douban"
+  secret: "secret key"
+  url:    "http://yoursite.com"
+production:
+  key:    "your api key from douban"
+  secret: "secret key"
+  url:    "http://yoursite.com"

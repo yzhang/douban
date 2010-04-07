@@ -1,0 +1,53 @@
+Douban
+======
+
+A Ruby wrapper for Douban(豆瓣) API, Rails 3 support only.
+
+Install
+=======
+
+$ gem install douban
+
+Usage
+=======
+
+1. Add below lines to your Gemfile:
+
+gem 'douban', :require => 'oauth'
+require 'douban'
+
+2. Run generator
+
+$ script/rails generate douban
+
+3. Set you api key and secret in config/douban.yml, and include 
+DoubanHelper in your ApplicationController:
+
+class ApplicationController
+  include DoubanHelper
+end
+
+4. Then you can insert below lines into your application layout
+
+<% if douban_authorized? %>
+  <%= link_to 'Logout From Douban', douban_logout_path %>
+<% else %>
+  <%= link_to "Login with douban", douban_login_path %>
+<% end %>
+
+Other available helpers:
+
+* douban_auth_or_login_required, it's useful if you use RESTFUL_AUTH.
+* douban_auth_required, you can add it to before_filter.
+
+5. To access douban resources, you can simple call:
+
+douban.get('/people/ahbei')
+douban.post('/reviews', review)
+
+6. To determine if your have authorized by user, simple call:
+
+douban.authorized?
+=> true  # if your access token is valid.
+
+Feedback are always welcome, Yuanyi Zhang(zhangyuanyi#gmail.com)
